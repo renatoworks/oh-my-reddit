@@ -1,0 +1,11 @@
+# Compiled binary
+/oh-my-reddit
+
+# Secrets: your OpenAI key (the Reddit session is handled in-app). NEVER commit this.
+.env
+
+# Local Claude Code settings (personal, not shared)
+.claude/settings.local.json
+
+# OS cruft
+.DS_Store
