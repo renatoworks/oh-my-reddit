@@ -1,7 +1,6 @@
 package main
 
 import (
-	"net/url"
 	"strings"
 
 	"github.com/charmbracelet/lipgloss"
@@ -118,26 +117,6 @@ func (m model) footerBarCentered(help string) string {
 
 // repoModule is the path users run `go install <path>@latest` to update.
 const repoModule = "github.com/renatoworks/oh-my-reddit"
-
-// hyperlink wraps text in an OSC 8 terminal hyperlink so a supporting terminal
-// (iTerm2, kitty, WezTerm…) can open link on click — Cmd+click here, since the
-// app captures mouse motion. Terminals without OSC 8 just show text plainly.
-//
-// link is untrusted (it comes from a Reddit post), so we only emit the escape
-// for a clean http(s) URL: a control byte (or the ST terminator) in the URL
-// could otherwise break out of the OSC 8 sequence and inject arbitrary terminal
-// escapes. Anything unsafe renders as plain text, no hyperlink.
-func hyperlink(link, text string) string {
-	if u, err := url.Parse(link); err != nil || (u.Scheme != "http" && u.Scheme != "https") {
-		return text
-	}
-	if strings.IndexFunc(link, func(r rune) bool {
-		return r < 0x20 || r == 0x7f || (r >= 0x80 && r <= 0x9f) // C0 + C1 controls
-	}) >= 0 {
-		return text
-	}
-	return "\x1b]8;;" + link + "\x1b\\" + text + "\x1b]8;;\x1b\\"
-}
 
 // updateNotice renders the "a newer version is available" line, centered across
 // the full width, or "" when no newer release is known (the background check

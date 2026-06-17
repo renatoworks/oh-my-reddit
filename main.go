@@ -161,7 +161,8 @@ func main() {
 	loadDotEnv()
 	initCookie() // load the cached reddit session, if any
 	setTerminalBG()
-	_, err := tea.NewProgram(newModel(), tea.WithAltScreen(), tea.WithMouseCellMotion()).Run()
+	// No mouse capture: keep the terminal's native text selection and click-to-open links.
+	_, err := tea.NewProgram(newModel(), tea.WithAltScreen()).Run()
 	resetTerminalBG() // restore the user's background before we hand the terminal back
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "oh-my-reddit error:", err)

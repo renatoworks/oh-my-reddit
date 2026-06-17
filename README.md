@@ -118,10 +118,12 @@ It's a single `package main` (flat, no subpackages), split by concern:
 | `view_list.go` | the thread list: sort tabs, rows, sections |
 | `view_feed.go` | the comment feed, original-post modal, status bar |
 | `reddit.go` | fetch and parse threads and comments (JSON and RSS), backoff, caching |
+| `image.go` | fetch and render an OP link's image as terminal half-blocks |
 | `cookies.go` | find and decrypt the reddit session from your browser |
 | `ai.go` | OpenAI client, sentiment and ask prompts |
 | `recents.go` | saved recent subreddits and threads |
 | `settings.go` | persisted preferences (voice on or off) |
+| `version.go` | build version and the Go-proxy update check |
 | `browser.go` | open-in-browser helper |
 | `styles.go` | dark palette, Lip Gloss styles, wordmark gradient |
 | `sample.go` | demo comment generator |
