@@ -47,18 +47,18 @@ func TestDecryptChromeV10(t *testing.T) {
 
 	// Recent Chrome: value carries the 32-byte host hash, which must be stripped.
 	enc := encChromeV10(t, "reddit_session=abc123", key, true)
-	if got, ok := decryptChromeV10(enc, key); !ok || got != "reddit_session=abc123" {
+	if got, ok := decryptChromiumV10(enc, key); !ok || got != "reddit_session=abc123" {
 		t.Errorf("with host hash: got %q (ok=%v), want reddit_session=abc123", got, ok)
 	}
 
 	// Older Chrome: no host hash prefix.
 	enc = encChromeV10(t, "token_v2=xyz", key, false)
-	if got, ok := decryptChromeV10(enc, key); !ok || got != "token_v2=xyz" {
+	if got, ok := decryptChromiumV10(enc, key); !ok || got != "token_v2=xyz" {
 		t.Errorf("no host hash: got %q (ok=%v), want token_v2=xyz", got, ok)
 	}
 
 	// Non-v10 input is rejected, not mis-decrypted.
-	if _, ok := decryptChromeV10([]byte("v20whatever"), key); ok {
+	if _, ok := decryptChromiumV10([]byte("v20whatever"), key); ok {
 		t.Error("non-v10 prefix should not decrypt")
 	}
 
@@ -66,7 +66,7 @@ func TestDecryptChromeV10(t *testing.T) {
 	// be reported as a failure, not handed back as an empty/garbage "cookie" —
 	// otherwise "found the session but couldn't decrypt it" looks like "no session".
 	garbage := encChromeV10(t, string([]byte{0xff, 0xfe, 0x00, 0x80}), key, false)
-	if got, ok := decryptChromeV10(garbage, key); ok {
+	if got, ok := decryptChromiumV10(garbage, key); ok {
 		t.Errorf("non-UTF-8 plaintext should fail to decrypt, got %q (ok=%v)", got, ok)
 	}
 
@@ -74,7 +74,7 @@ func TestDecryptChromeV10(t *testing.T) {
 	wrongKey := make([]byte, 16)
 	wrongKey[0] = 0x42
 	enc = encChromeV10(t, "reddit_session=this_is_a_reasonably_long_value_xyz", key, false)
-	if got, ok := decryptChromeV10(enc, wrongKey); ok {
+	if got, ok := decryptChromiumV10(enc, wrongKey); ok {
 		t.Errorf("wrong key should fail to decrypt, got %q (ok=%v)", got, ok)
 	}
 }

@@ -41,7 +41,8 @@ func (m model) renderAuth() string {
 		gutter := lipgloss.NewStyle().Foreground(colAccent).Render("▌ ")
 		parts = append(parts,
 			gutter+lipgloss.NewStyle().Foreground(colAccent).Bold(true).Render("how")+metaStyle.Render("  on reddit.com (logged in):"),
-			gutter+bodyMutedStyle.Render("DevTools → Network → copy the request’s full Cookie: header,"),
+			gutter+bodyMutedStyle.Render("open DevTools → Network tab → click any reddit request →"),
+			gutter+bodyMutedStyle.Render("under Request Headers, copy the whole Cookie: value,"),
 			gutter+bodyMutedStyle.Render("then paste it below."),
 			"",
 			box,
@@ -60,7 +61,7 @@ func (m model) renderAuth() string {
 			if len(m.authChecked) > 0 {
 				parts = append(parts, lipgloss.NewStyle().Foreground(fadeColor(colMuted, msg)).Width(wrapW).Render("checked: "+strings.Join(m.authChecked, " · ")))
 			}
-			parts = append(parts, lipgloss.NewStyle().Foreground(fadeColor(colFaint, msg)).Width(wrapW).Render("chrome must be logged in + grant the Keychain “Allow”; safari needs Full Disk Access"), "")
+			parts = append(parts, lipgloss.NewStyle().Foreground(fadeColor(colFaint, msg)).Width(wrapW).Render("chrome, brave, edge must be logged in + grant the Keychain “Allow”; safari needs Full Disk Access"), "")
 		}
 		connect := "connect with my reddit session"
 		if m.authTried {

@@ -43,13 +43,13 @@ oh-my-reddit https://www.reddit.com/r/soccer/comments/<id>/...   # open one thre
 
 ## Signing in
 
-Reddit throttles anonymous access hard (lots of `429` and `403`), so you need to be logged in. The first time you run it (unless you pass `demo`) you get a connect screen. Press `enter` and it finds a logged-in reddit session in your browser (Chrome, Safari, Firefox, Edge, across all profiles) and reuses it, no copy and paste. If auto-detect comes up empty, you can paste a `Cookie:` header by hand instead.
+Reddit throttles anonymous access hard (lots of `429` and `403`), so you need to be logged in. The first time you run it (unless you pass `demo`) you get a connect screen. Press `enter` and it finds a logged-in reddit session in your browser (Chrome, Brave, Edge, Vivaldi, Safari, Firefox, across all profiles) and reuses it, no copy and paste. If auto-detect comes up empty, you can paste one by hand: on reddit.com (logged in), open DevTools, and from the Network tab copy any request's full `Cookie:` header.
 
-The session is cached locally, so later launches skip this screen. If more than one account is logged in, you choose by username. If it expires, oh-my-reddit refreshes it from your browser when it can, or sends you back here to reconnect. Press `ctrl+l` to log out anytime.
+The session is cached locally, so later launches skip this screen. If more than one session is found, whether different accounts or the same account across browsers, you choose which to use. If it expires, oh-my-reddit refreshes it from your browser when it can, or sends you back here to reconnect. Press `ctrl+l` to log out anytime.
 
 ### macOS notes
 
-- **Chrome**: must be logged in. The first read pops a one-time Keychain prompt, so click *Allow*.
+- **Chrome, Brave, Edge, Vivaldi**: must be logged in. The first read pops a one-time Keychain prompt per browser, so click *Allow*.
 - **Safari**: your terminal needs Full Disk Access (System Settings, Privacy & Security, Full Disk Access).
 - **Firefox**: works with no prompt.
 

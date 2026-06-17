@@ -59,6 +59,6 @@ go vet ./...
 ## Important notes
 
 - Never commit `.env` (the OpenAI key) or the session cookie. `.env` is gitignored; the cookie is cached `0600` in the user config dir.
-- The macOS Chrome path decrypts cookies itself, because the usual library can't read recent Chrome. See `cookies.go`.
+- On macOS, Chromium browsers (Chrome, Brave, Edge, Vivaldi) are decrypted natively, because the usual library can't read them. See `cookies.go`.
 - Voice and the `say` engine are macOS only, gated on `runtime.GOOS == "darwin"`.
 - AI features (`s` summary, `a` ask) require `OPENAI_API_KEY`. Without it they are hidden and the keys do nothing.
