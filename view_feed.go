@@ -340,8 +340,11 @@ func (m *model) cacheOPImage() {
 // opBody is the scrollable content: the rendered self-text, the link, or both.
 func (m model) opBody(width int) string {
 	p := m.op
-	// The link is an OSC 8 hyperlink (Cmd+click to open in the browser).
-	link := hyperlink(p.link, lipgloss.NewStyle().Foreground(colAccent2).Width(width).Render("→ "+p.link))
+	// The URL is rendered as plain styled text: with the mouse uncaptured, the
+	// terminal auto-detects it and makes it clickable on its own (the same way it
+	// already handles URLs inside comment bodies), with the underline/click scoped
+	// to just the URL instead of bleeding across the whole padded row.
+	link := lipgloss.NewStyle().Foreground(colAccent2).Width(width).Render("→ " + p.link)
 	switch {
 	case p.body != "":
 		body := renderMarkdown(p.body, width)

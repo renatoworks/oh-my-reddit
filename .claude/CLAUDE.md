@@ -38,10 +38,12 @@ go vet ./...
 - `anim.go`: entrance and fade animations
 - `view.go`: top-level view dispatch and shared layout chrome
 - `view_auth.go` / `view_input.go` / `view_list.go` / `view_feed.go`: per-screen rendering
-- `reddit.go`: fetch and parse threads and comments (JSON and RSS), backoff, caching
+- `reddit.go`: fetch and parse threads and comments (JSON and RSS), backoff, caching, control-byte stripping
+- `image.go`: fetch and render an OP link's image as terminal half-blocks
 - `cookies.go`: find and decrypt the Reddit session from the browser
 - `ai.go`: OpenAI client, sentiment and ask prompts
 - `recents.go` / `settings.go`: state persisted under the user config dir
+- `version.go`: build version and the Go-proxy update check
 - `styles.go`: palette, Lip Gloss styles, wordmark gradient
 - `sample.go`: demo comment generator
 
