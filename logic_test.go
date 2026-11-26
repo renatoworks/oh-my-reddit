@@ -154,11 +154,11 @@ func TestURLBuilders(t *testing.T) {
 		t.Errorf("cleanSubreddit = %q, want golang", got)
 	}
 
-	if got := threadsJSONURL("soccer", sortNew); got != "https://www.reddit.com/r/soccer/new.json?limit=100&raw_json=1" {
+	if got := threadsJSONURL("soccer", sortNew); got != "https://www.reddit.com/r/soccer.json?sort=new&limit=100&raw_json=1" {
 		t.Errorf("threadsJSONURL new = %q", got)
 	}
-	if got := threadsJSONURL("soccer", sortTop); !strings.Contains(got, "/top.json") || !strings.Contains(got, "t=day") {
-		t.Errorf("threadsJSONURL top = %q, want /top.json and t=day", got)
+	if got := threadsJSONURL("soccer", sortTop); !strings.Contains(got, "/r/soccer.json?sort=top") || !strings.Contains(got, "t=day") {
+		t.Errorf("threadsJSONURL top = %q, want sort=top and t=day", got)
 	}
 	if got := threadsRSSURL("soccer", sortHot); got != "https://www.reddit.com/r/soccer/.rss" {
 		t.Errorf("threadsRSSURL hot = %q", got)
