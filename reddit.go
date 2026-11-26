@@ -301,7 +301,7 @@ func fetchThreads(subreddit string, sort listSort) ([]thread, error) {
 // threadsJSONURL builds a subreddit listing endpoint for the given sort. "top"
 // needs a time window; we default to the day so it tracks what's big right now.
 func threadsJSONURL(sub string, sort listSort) string {
-	u := "https://www.reddit.com/r/" + sub + "/" + string(sort) + ".json?limit=100&raw_json=1"
+	u := "https://www.reddit.com/r/" + sub + ".json?sort=" + string(sort) + "&limit=100&raw_json=1"
 	if sort == sortTop {
 		u += "&t=day"
 	}
